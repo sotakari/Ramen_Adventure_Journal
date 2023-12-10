@@ -1,35 +1,7 @@
 Rails.application.routes.draw do
 
-  namespace :admin do
-    get 'users/index'
-    get 'users/show'
-    get 'users/edit'
-    get 'users/update'
-  end
-  namespace :public do
-    get 'users/show'
-    get 'users/index'
-    get 'users/edit'
-    get 'users/update'
-    get 'users/check'
-    get 'users/withdraw'
-  end
-  namespace :admin do
-    get 'reviews/index'
-    get 'reviews/show'
-    get 'reviews/edit'
-    get 'reviews/destroy'
-    get 'reviews/update'
-  end
-  namespace :public do
-    get 'reviews/index'
-    get 'reviews/show'
-    get 'reviews/new'
-    get 'reviews/create'
-    get 'reviews/edit'
-    get 'reviews/update'
-    get 'reviews/destroy'
-  end
+    get "/about" => "public/homes#about"
+
   devise_for :admin, controllers: {
     sessions: 'admin/sessions',
   }
@@ -62,6 +34,4 @@ Rails.application.routes.draw do
 
     resources :reviews, only: [:index, :show, :new, :create, :edit, :update, :destroy]
   end
-
-
 end
