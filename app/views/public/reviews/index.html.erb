@@ -16,6 +16,9 @@
             <% end %>
           </p>
           <p class="card-text">説明：<%= review.review_comment %></p>
+          <p class="card-text">
+            <strong><i class="fas fa-yen-sign"></i>価格：</strong><%= review.price %>円
+          </p>
           <span><i class="fas fa-user"></i> By <%= review.user.name %></span>
         </div>
       </div>

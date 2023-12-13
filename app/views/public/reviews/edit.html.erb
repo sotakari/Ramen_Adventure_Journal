@@ -29,6 +29,13 @@
             <%= f.text_field :ramen_name, class: "form-control", placeholder: "ラーメン名" %>
           </div>
 
+          <div class="input-group mb-3 mt-4">
+            <div class="input-group-prepend">
+              <span class="input-group-text" aria-hidden="true"><i class="fas fa-utensils"></i></span>
+            </div>
+            <%= f.text_field :price, class: "form-control", placeholder: "価格" %>
+          </div>
+
           <!-- 表示用の画像を追加 -->
           <% if @review.ramen_image.attached? %>
             <div class="mb-3">

@@ -28,8 +28,15 @@
             </div>
             <%= f.text_field :ramen_name, class:"form-control",placeholder:"ラーメン名" %>
           </div>
-          <%= f.text_area :review_comment, class:"form-control", rows:"3", placeholder:"コメントを記入" %>
-          <hr>
+
+          <div class="input-group mb-3 mt-4">
+            <div class="input-group-prepend">
+              <span class="input-group-text" aria-hidden="true"><i class="fas fa-yen-sign"></i></span>
+            </div>
+             <%= f.number_field :price, class: "form-control", placeholder: "価格" %>
+          </div>
+            <%= f.text_area :review_comment, class:"form-control", rows:"3", placeholder:"コメントを記入" %>
+            <hr>
           <%= f.submit '投稿', class:"btn btn-lg btn-block btn-info mt-4" %>
         <% end %>
       </div>
