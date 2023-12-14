@@ -35,6 +35,53 @@
             </div>
              <%= f.number_field :price, class: "form-control", placeholder: "価格" %>
           </div>
+          <!-- 総合評価 -->
+          <div class="form-group" id="all_rating">
+            <%= f.label :総合評価 %>
+            <%= f.hidden_field :all_rating, id: :review_all_rating, class: 'form-control' %>
+            <div id="all_rating_raty"></div>
+          </div>
+
+          <!-- 麺評価 -->
+          <div class="form-group" id="noodle_rating">
+            <%= f.label :麺 %>
+            <%= f.hidden_field :noodle_rating, id: :review_noodle_rating, class: 'form-control' %>
+            <div id="noodle_rating_raty"></div>
+          </div>
+
+          <!-- スープ評価 -->
+          <div class="form-group" id="soup_rating">
+            <%= f.label :スープ %>
+            <%= f.hidden_field :soup_rating, id: :review_soup_rating, class: 'form-control' %>
+            <div id="soup_rating_raty"></div>
+          </div>
+
+          <!-- 具評価 -->
+          <div class="form-group" id="topping_rating">
+            <%= f.label :具 %>
+            <%= f.hidden_field :topping_rating, id: :review_topping_rating, class: 'form-control' %>
+            <div id="topping_rating_raty"></div>
+          </div>
+
+          <script>
+            $(document).on('turbolinks:load', function() {
+              ['all_rating', 'noodle_rating', 'soup_rating', 'topping_rating'].forEach(function(ratingType) {
+                let elem = document.querySelector('#' + ratingType + '_raty');
+                if (elem == null) return;
+
+                elem.innerHTML = ""
+                let opt = {
+                  starOn: "<%= asset_path('star-on.png') %>",
+                  starOff: "<%= asset_path('star-off.png') %>",
+                  starHalf: "<%= asset_path('star-half.png') %>",
+                  scoreName: 'review[' + ratingType + ']',
+                  half: true,
+                };
+                raty(elem, opt);
+              });
+            });
+          </script>
+
             <%= f.text_area :review_comment, class:"form-control", rows:"3", placeholder:"コメントを記入" %>
             <hr>
           <%= f.submit '投稿', class:"btn btn-lg btn-block btn-info mt-4" %>
