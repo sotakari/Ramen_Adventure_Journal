@@ -1,2 +1,48 @@
-<h1>Admin::Users#edit</h1>
-<p>Find me in app/views/admin/users/edit.html.erb</p>
+<div class="container">
+  <div class="row no-gutters">
+    <div class="col-md-5 col-sm-10 mx-2 mx-sm-auto text-center shadow-lg rounded px-0 my-5">
+      <h5 class="text-dark bg-light py-4 mb-0">プロフィール編集</h5>
+      <div class="form-body p-4">
+        <%= form_with model: @user, url: admin_user_path(@user), method: :patch do |f| %>
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text" aria-hidden="true"><i class="fas fa-user"></i></span>
+            </div>
+            <%= f.text_field :name, autofocus: true, class:"form-control", id:"inputName", placeholder:"ユーザー名"%>
+          </div>
+          <div class="input-group my-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text" aria-hidden="true"><i class="fas fa-image"></i></span>
+            </div>
+            <div class="custom-file">
+              <%= f.file_field :profile_image, class: 'custom-file-input', accept: "image/*", style: "display: none;" %>
+              <label class="custom-file-label" for="user_profile_image" style="text-align: left;">プロフィール画像</label>
+            </div>
+          </div>
+          <div class="input-group my-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text" aria-hidden="true"><i class="fas fa-envelope"></i></span>
+            </div>
+            <%= f.email_field :email, class:"form-control", id:"inputEmail", placeholder:"メールアドレス"%>
+          </div>
+
+          <div>会員ステータス</div>
+            <div class="form-group">
+            <div class="form-check form-check-inline">
+              <%= f.radio_button :is_active, true, class: 'form-check-input', id: 'is_active_true' %>
+              <%= f.label :is_active_true, "有効", class: 'form-check-label' %>
+            </div>
+            
+            <div class="form-check form-check-inline">
+              <%= f.radio_button :is_active, false, class: 'form-check-input', id: 'is_active_false' %>
+              <%= f.label :is_active_false, "退会", class: 'form-check-label' %>
+            </div>
+          </div>
+
+          <%= f.submit "変更を保存", class:"btn btn-lg btn-block btn-success mt-5" %>
+
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
