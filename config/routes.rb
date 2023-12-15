@@ -5,13 +5,13 @@ Rails.application.routes.draw do
   devise_for :admin, controllers: {
     sessions: 'admin/sessions',
   }
-  
+
   namespace :admin do
     get 'top' => 'homes#top', as: 'top'
     get 'search' => 'homes#search', as: 'search'
     get 'users/:user_id/reviews' => 'reviews#index', as: 'user_reviews'
     resources :users, only: [:index, :show, :edit, :update]
-    resources :reviews, only: [:index, :show, :edit, :update, :destroy]
+    resources :reviews, only: [:index, :show, :update, :destroy]
     resources :genres, only: [:index, :create, :edit, :update]
   end
 
@@ -20,7 +20,7 @@ Rails.application.routes.draw do
     sessions: 'public/sessions',
     registrations: 'public/registrations',
   }
-  
+
   devise_scope :user do
     post 'user/guest_sign_in', to: 'public/sessions#guest_sign_in'
   end
