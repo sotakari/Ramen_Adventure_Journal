@@ -1,0 +1,49 @@
+<div id="static-rating-<%= review.id %>"></div>
+
+<!-- 全体評価 -->
+<div id="all-rating-<%= review.id %>"></div>
+<script>
+  $('#all-rating-<%= review.id %>').raty({
+    readOnly: true,
+    score: <%= review.all_rating %>,
+    path: '/assets',
+    starOn: "<%= asset_path('star-on.png') %>",
+    starOff: "<%= asset_path('star-off.png') %>",
+  });
+</script>
+
+<!-- 麺の評価 -->
+<div id="noodle-rating-<%= review.id %>"></div>
+<script>
+  $('#noodle-rating-<%= review.id %>').raty({
+    readOnly: true,
+    score: <%= review.noodle_rating %>,
+    path: '/assets',
+    starOn: "<%= asset_path('star-on.png') %>",
+    starOff: "<%= asset_path('star-off.png') %>",
+  });
+</script>
+
+<!-- スープの評価 -->
+<div id="soup-rating-<%= review.id %>"></div>
+<script>
+  $('#soup-rating-<%= review.id %>').raty({
+    readOnly: true,
+    score: <%= review.soup_rating %>,
+    path: '/assets',
+    starOn: "<%= asset_path('star-on.png') %>",
+    starOff: "<%= asset_path('star-off.png') %>",
+  });
+</script>
+
+<!-- トッピングの評価 -->
+<div id="topping-rating-<%= review.id %>"></div>
+<script>
+  $('#topping-rating-<%= review.id %>').raty({
+    readOnly: true,
+    score: <%= review.topping_rating %>,
+    path: '/assets',
+    starOn: "<%= asset_path('star-on.png') %>",
+    starOff: "<%= asset_path('star-off.png') %>",
+  });
+</script>
