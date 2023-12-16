@@ -31,7 +31,8 @@
             <%= link_to review_path(review) do %>
               <div class="item-image text-center mb-4">
                 <%= image_tag review.get_image, class: "img-fluid", style: "height: 200px; object-fit: cover;" %></br>
-                <div class="card-text"><%= link_to review.ramen_name, review_path(review), class:"link" %></div>
+                <div class="card-text"><%= link_to review.ramen_name, review_path(review), class:"link text-dark" %></div>
+                <div class="card-text"><%= review.price %>円</div>
               </div>
             <% end %>
           </div>
