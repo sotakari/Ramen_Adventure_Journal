@@ -1,8 +1,8 @@
 <div class="containar">
-  <div class="row no-gutters">
+  <div class="row no-gutters mb-3">
     <div class="col-md-5 col-sm-10 mx-2 mx-sm-auto shadow-lg rounded px-0 my-5">
       <h5 class="text-dark bg-light p-4 mb-0">画像投稿フォーム</h5>
-      <div class="form-body p-4">
+      <div class="form-body p-4 mb-3">
         <%= form_with model: @review, local:true do |f| %>
 
           <div class="input-group mb-3 mt-4">
@@ -37,38 +37,35 @@
           </div>
 
           <% if review.id.nil? %>
-          <!-- 総合評価 -->
-          <div class="form-group" id="all_rating">
-            <%= f.label :総合評価 %>
-            <%= f.hidden_field :all_rating, id: :review_all_rating, class: 'form-control' %>
-            <div id="all_rating_raty"></div>
-          </div>
+            <div class="form-group" id="all_rating">
+              <%= f.label :総合評価 %>
+              <%= f.hidden_field :all_rating, id: :review_all_rating, class: 'form-control' %>
+              <div id="all_rating_raty"></div>
+            </div>
+            <script>
+              $(document).on('turbolinks:load', function() {
+                let elem = document.querySelector('#all_rating_raty');
+                if (elem == null) return;
+                elem.innerHTML = ""
+                let opt = {
+                  starOn: "<%= asset_path('star-on.png') %>",
+                  starOff: "<%= asset_path('star-off.png') %>",
+                  starHalf: "<%= asset_path('star-half.png') %>",
+                  scoreName: 'review[all_rating]',
+                  half: true,
+                };
+                raty(elem, opt);
+              });
+            </script>
 
-          <!-- 麺評価 -->
-          <div class="form-group" id="noodle_rating">
-            <%= f.label :麺 %>
-            <%= f.hidden_field :noodle_rating, id: :review_noodle_rating, class: 'form-control' %>
-            <div id="noodle_rating_raty"></div>
-          </div>
-
-          <!-- スープ評価 -->
-          <div class="form-group" id="soup_rating">
-            <%= f.label :スープ %>
-            <%= f.hidden_field :soup_rating, id: :review_soup_rating, class: 'form-control' %>
-            <div id="soup_rating_raty"></div>
-          </div>
-
-          <!-- 具評価 -->
-          <div class="form-group" id="topping_rating">
-            <%= f.label :具 %>
-            <%= f.hidden_field :topping_rating, id: :review_topping_rating, class: 'form-control' %>
-            <div id="topping_rating_raty"></div>
-          </div>
-
-          <script>
-            $(document).on('turbolinks:load', function() {
-              ['all_rating', 'noodle_rating', 'soup_rating', 'topping_rating'].forEach(function(ratingType) {
-                let elem = document.querySelector('#' + ratingType + '_raty');
+            <div class="form-group" id="noodle_rating">
+              <%= f.label :麺 %>
+              <%= f.hidden_field :noodle_rating, id: :review_noodle_rating, class: 'form-control' %>
+              <div id="noodle_rating_raty"></div>
+            </div>
+            <script>
+              $(document).on('turbolinks:load', function() {
+                let elem = document.querySelector('#noodle_rating_raty');
                 if (elem == null) return;
 
                 elem.innerHTML = ""
@@ -76,17 +73,60 @@
                   starOn: "<%= asset_path('star-on.png') %>",
                   starOff: "<%= asset_path('star-off.png') %>",
                   starHalf: "<%= asset_path('star-half.png') %>",
-                  scoreName: 'review[' + ratingType + ']',
+                  scoreName: 'review[noodle_rating]',
                   half: true,
                 };
                 raty(elem, opt);
               });
-            });
-          </script>
+            </script>
+
+            <div class="form-group" id="soup_rating">
+              <%= f.label :スープ %>
+              <%= f.hidden_field :soup_rating, id: :review_soup_rating, class: 'form-control' %>
+              <div id="soup_rating_raty"></div>
+            </div>
+            <script>
+              $(document).on('turbolinks:load', function() {
+                let elem = document.querySelector('#soup_rating_raty');
+                if (elem == null) return;
+
+                elem.innerHTML = ""
+                let opt = {
+                  starOn: "<%= asset_path('star-on.png') %>",
+                  starOff: "<%= asset_path('star-off.png') %>",
+                  starHalf: "<%= asset_path('star-half.png') %>",
+                  scoreName: 'review[soup_rating]',
+                  half: true,
+                };
+                raty(elem, opt);
+              });
+            </script>
+
+            <div class="form-group" id="topping_rating">
+              <%= f.label :具 %>
+              <%= f.hidden_field :topping_rating, id: :review_topping_rating, class: 'form-control' %>
+              <div id="topping_rating_raty"></div>
+            </div>
+            <script>
+              $(document).on('turbolinks:load', function() {
+                let elem = document.querySelector('#topping_rating_raty');
+                if (elem == null) return;
+
+                elem.innerHTML = ""
+                let opt = {
+                  starOn: "<%= asset_path('star-on.png') %>",
+                  starOff: "<%= asset_path('star-off.png') %>",
+                  starHalf: "<%= asset_path('star-half.png') %>",
+                  scoreName: 'review[topping_rating]',
+                  half: true,
+                };
+                raty(elem, opt);
+              });
+            </script>
 
           <% else %>
             <div class="form-group">
-              <%= render "public/reviews/static_rate", review: @review %>
+              <%= render "static_rate", review: review %>
             </div>
           <% end %>
 
