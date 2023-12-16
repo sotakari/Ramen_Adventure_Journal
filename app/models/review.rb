@@ -1,5 +1,6 @@
 class Review < ApplicationRecord
   belongs_to :user
+  has_many :review_comments, dependent: :destroy
   has_one_attached :ramen_image
 
   validates :shop_name, presence: true

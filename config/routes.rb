@@ -36,6 +36,9 @@ Rails.application.routes.draw do
     put 'users/information' => 'users#update'
     patch 'users/withdraw' => 'users#withdraw', as: 'withdraw_user'
 
-    resources :reviews, only: [:index, :show, :new, :create, :edit, :update, :destroy]
+    resources :reviews, only: [:index, :show, :new, :create, :edit, :update, :destroy] do
+      resources :review_comments, only: [:create, :destroy]
+    end
   end
+  
 end
