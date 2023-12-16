@@ -1,1 +1,42 @@
-Top
+<div class="container">
+  <div class="row">
+    <div class="col text-center">
+      <div class="image-container mt-5 ">
+        <%= image_tag 'ramen_top.jpg', class: 'img-fluid rounded-ig'%>
+        <div class="main-text">
+          <div class="text-content text-secondary">
+            <h4>ようこそ、ラーメン探訪記へ！</h4>
+            <p>このサイトはラーメンのレビューサイトです。</p>
+            <p>ご利用には会員登録が必要になります。</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="container new-review">
+  <div class="row">
+    <div class="col">
+      <h3 class="border-bottom">新着レビュー</h3>
+    </div>
+  </div>
+
+  <div class="row">
+    <% @reviews.each do |review| %>
+      <div class="col-md-3 col-sm-6 mb-3">
+        <div class="card w-100 bg-transparent border-0">
+          <div class="card-body mb-4">
+            <%= link_to review_path(review) do %>
+              <div class="item-image text-center mb-4">
+                <%= image_tag review.get_image, class: "img-fluid", style: "height: 200px; object-fit: cover;" %></br>
+                <div class="card-text"><%= link_to review.ramen_name, review_path(review), class:"link" %></div>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
