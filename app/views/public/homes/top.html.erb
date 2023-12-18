@@ -1,14 +1,14 @@
 <div class="container">
   <div class="row">
     <div class="col text-center">
-      <div class="image-container mt-5 ">
-        <%= image_tag 'ramen_top.jpg', class: 'img-fluid rounded-ig'%>
-        <div class="main-text">
-          <div class="text-content text-secondary">
-            <h4>ようこそ、ラーメン探訪記へ！</h4>
-            <p>このサイトはラーメンのレビューサイトです。</p>
-            <p>ご利用には会員登録が必要になります。</p>
-          </div>
+      <div class="main-text mt-3">
+        <div class="text-content">
+          <h4 class="mb-3">ようこそ、ラーメン探訪記へ！</h4>
+          <p>このサイトはラーメンのレビューサイトです。</p>
+          <p>ご利用には会員登録が必要になります。</p>
+        </div>
+        <div class="image-container mt-5">
+          <%= image_tag 'top.jpg', width: '700px' %>
         </div>
       </div>
     </div>
@@ -16,10 +16,10 @@
 </div>
 
 
-<div class="container new-review">
+<div class="container new-review mt-5">
   <div class="row">
     <div class="col">
-      <h3 class="border-bottom">新着レビュー</h3>
+      <h3 class="border-bottom ">新着レビュー</h3>
     </div>
   </div>
 
@@ -29,10 +29,32 @@
         <div class="card w-100 bg-transparent border-0">
           <div class="card-body mb-4">
             <%= link_to review_path(review) do %>
-              <div class="item-image text-center mb-4">
+              <div class="ramen_image text-center mb-4">
                 <%= image_tag review.get_image, class: "img-fluid", style: "height: 200px; object-fit: cover;" %></br>
                 <div class="card-text"><%= link_to review.ramen_name, review_path(review), class:"link text-dark" %></div>
                 <div class="card-text"><%= review.price %>円</div>
+                  <div class="form-group text-center">
+                    <strong>総合評価</strong>
+                      <div id="all_rating_<%= review.id %>" class="centered-content"></div>
+                  </div>
+
+                  <script>
+                    $(document).on('turbolinks:load', function() {
+                      let elem = document.querySelector('#all_rating_<%= review.id %>');
+                      if (elem == null) return;
+
+                      elem.innerHTML = "";
+                      let opt = {
+                        starOn: "<%= asset_path('star-on.png') %>",
+                        starOff: "<%= asset_path('star-off.png') %>",
+                        starHalf: "<%= asset_path('star-half.png') %>",
+                        score: "<%= review.all_rating %>",
+                        half: true,
+                        readOnly: true,
+                      };
+                      raty(elem, opt);
+                    });
+                  </script>
               </div>
             <% end %>
           </div>

@@ -1,9 +1,68 @@
-<div class="profile-container w-75 d-flex mx-auto justify-content-around align-items-center border-bottom py-5">
-  <%= image_tag @user.get_profile_image, class:"rounded-circle";  %>
-  <h5 class="profile-name display-4"><%= @user.name %></h5>
-  <% if @user.id == current_user.id %>
-    <div class="mt-auto">
-    <p><%= link_to "プロフィール編集", edit_information_path, class:"text-dark" %></p>
-    </div>
-  <% end %>
+<div class="container my-5">
+  <div class="profile-container w-75 d-flex mx-auto justify-content-around align-items-center border-bottom py-5">
+    <%= image_tag @user.get_profile_image, class: "rounded-circle"; %>
+    <h5 class="profile-name display-4"><%= @user.name %></h5>
+    <% if @user.id == current_user.id %>
+      <div class="mt-auto">
+        <p><%= link_to "プロフィール編集", edit_information_path, class: "text-dark" %></p>
+      </div>
+    <% end %>
+  </div>
+</div>
+
+<div class="container new-review mt-5 pb-5">
+  <div class="row">
+    <% @user.reviews.each do |review| %>
+      <div class="col-md-3 col-sm-6 mb-4 mt-2">
+        <div class="card h-100 shadow-lg">
+          <%= link_to review_path(review.id) do %>
+            <%= image_tag review.get_image, class:"card-img-top img-fluid", style: "height: 200px; object-fit: cover;" %>
+          <% end %>
+          <div class="card-body d-flex flex-column mb-4">
+
+            <strong class="mb-2 text-center"><i class="fa-solid fa-shop"></i>
+              <span><%= link_to(review.shop_name, review_path(review), class:"text-dark") %></span>
+            </strong>
+
+            <strong class="mb-2 text-center"><i class="fa-solid fa-utensils"></i>
+              <span><%= review.ramen_name %></span>
+            </strong>
+
+            <p class="card-text text-center">
+              <strong><%= review.price %>円</strong>
+            </p>
+
+            <div class="form-group text-center">
+              <strong>総合評価</strong>
+                <div id="all_rating_<%= review.id %>" class="centered-content"></div>
+            </div>
+
+            <script>
+              $(document).on('turbolinks:load', function() {
+                let elem = document.querySelector('#all_rating_<%= review.id %>');
+                if (elem == null) return;
+
+                elem.innerHTML = "";
+                let opt = {
+                  starOn: "<%= asset_path('star-on.png') %>",
+                  starOff: "<%= asset_path('star-off.png') %>",
+                  starHalf: "<%= asset_path('star-half.png') %>",
+                  score: "<%= review.all_rating %>",
+                  half: true,
+                  readOnly: true,
+                };
+                raty(elem, opt);
+              });
+            </script>
+
+            <p class="card-text text-center"><%= review.review_comment.truncate(50) %></p>
+
+            <div class="mt-auto text-center">
+              <span><i class="fas fa-user"></i> By <%= review.user.name %></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
 </div>

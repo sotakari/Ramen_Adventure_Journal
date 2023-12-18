@@ -8,21 +8,44 @@
           <% end %>
           <div class="card-body d-flex flex-column mb-4">
 
-            <strong class="mb-2"><i class="fa-solid fa-shop"></i>
+            <strong class="mb-2 text-center"><i class="fa-solid fa-shop"></i>
               <span><%= link_to(review.shop_name, review_path(review), class:"text-dark") %></span>
             </strong>
 
-            <strong class="mb-2"><i class="fa-solid fa-utensils"></i>
+            <strong class="mb-2 text-center"><i class="fa-solid fa-utensils"></i>
               <span><%= review.ramen_name %></span>
             </strong>
 
-            <p class="card-text">
+            <p class="card-text text-center">
               <strong><%= review.price %>円</strong>
             </p>
 
-            <p class="card-text"><%= review.review_comment.truncate(50) %></p>
+            <div class="form-group text-center">
+              <strong>総合評価</strong>
+                <div id="all_rating_<%= review.id %>" class="centered-content"></div>
+            </div>
 
-            <div class="mt-auto">
+            <script>
+              $(document).on('turbolinks:load', function() {
+                let elem = document.querySelector('#all_rating_<%= review.id %>');
+                if (elem == null) return;
+
+                elem.innerHTML = "";
+                let opt = {
+                  starOn: "<%= asset_path('star-on.png') %>",
+                  starOff: "<%= asset_path('star-off.png') %>",
+                  starHalf: "<%= asset_path('star-half.png') %>",
+                  score: "<%= review.all_rating %>",
+                  half: true,
+                  readOnly: true,
+                };
+                raty(elem, opt);
+              });
+            </script>
+
+            <p class="card-text text-center"><%= review.review_comment.truncate(50) %></p>
+
+            <div class="mt-auto text-center">
               <span><i class="fas fa-user"></i> By <%= review.user.name %></span>
             </div>
           </div>
