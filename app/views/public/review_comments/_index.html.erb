@@ -1,0 +1,12 @@
+<% review.review_comments.each do |review_comment| %>
+<div class="review-comment">
+  <p><%= image_tag review_comment.user.get_profile_image, size: "100x100" %></p>
+  <p><strong><%= review_comment.user.name %></strong></p>
+  <p><%= review_comment.created_at.strftime('%Y/%m/%d') %></p>
+  <p><%= review_comment.comment %></p>
+
+  <% if review_comment.user == current_user %>
+    <%= link_to "削除", review_review_comment_path(review_comment.review, review_comment), method: :delete, data: { confirm: "本当に削除しますか？" }, remote:true, data: { "turbolinks" => false }, class: "btn btn-danger" %>
+  <% end %>
+</div>
+<% end %>
