@@ -1,7 +1,7 @@
 <div class="containar">
   <div class="row no-gutters mb-3">
     <div class="col-md-5 col-sm-10 mx-2 mx-sm-auto shadow-lg rounded px-0 my-5">
-      <h5 class="text-dark bg-light p-4 mb-0">画像投稿フォーム</h5>
+      <h5 class="text-dark bg-light p-4 mb-0"></h5>
       <div class="form-body p-4 mb-3">
         <%= form_with model: @review, local:true do |f| %>
 
@@ -34,6 +34,13 @@
               <span class="input-group-text" aria-hidden="true"><i class="fas fa-yen-sign"></i></span>
             </div>
              <%= f.number_field :price, class: "form-control", placeholder:"価格" %>
+          </div>
+
+          <div class="input-group mb-3 mt-4">
+            <div class="input-group-prepend">
+              <span class="input-group-text" aria-hidden="true"><i class="fa-solid fa-magnifying-glass"></i></span>
+            </div>
+            <%= f.text_field :category, class:"form-control",placeholder:"カテゴリー" %>
           </div>
 
           <% if review.id.nil? %>
@@ -132,7 +139,7 @@
 
           <%= f.text_area :review_comment, class:"form-control", rows:"3", placeholder:"コメントを記入" %>
           <hr>
-          <%= f.submit '投稿', class:"btn btn-lg btn-block btn-info mt-4" %>
+          <%= f.submit '投稿', class:"btn btn-lg btn-block btn-success mt-4" %>
         <% end %>
       </div>
     </div>

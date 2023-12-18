@@ -35,6 +35,7 @@ Rails.application.routes.draw do
     get 'users/unsubscribe' => 'users#unsubscribe', as: 'confirm_unsubscribe'
     put 'users/information' => 'users#update'
     patch 'users/withdraw' => 'users#withdraw', as: 'withdraw_user'
+    get 'tagsearches/search', to: 'tagsearches#search'
 
     resources :reviews, only: [:index, :show, :new, :create, :edit, :update, :destroy] do
       resources :review_comments, only: [:create, :destroy]

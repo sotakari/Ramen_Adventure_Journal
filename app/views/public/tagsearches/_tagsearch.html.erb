@@ -1,0 +1,10 @@
+<div class="collapse navbar-collapse" id="search">
+  <ul class="navbar-nav ml-auto">
+    <li class="nav-item">
+      <%= form_with url: tagsearches_search_path, method: :get, local: true, class: "form-inline" do |f| %>
+        <%= f.text_field :content, class: "form-control mr-sm-1", type: "search", placeholder: "タグ検索", "aria-label": "Search" %>
+        <%= f.submit '検索', class: "btn btn-outline-success my-2 my-sm-0" %>
+      <% end %>
+    </li>
+  </ul>
+</div>

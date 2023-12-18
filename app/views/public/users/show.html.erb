@@ -32,6 +32,10 @@
               <strong><%= review.price %>円</strong>
             </p>
 
+            <strong class="card-text text-center"><i class="fa-solid fa-magnifying-glass"></i>
+              <span><%= link_to review.category, tagsearches_search_path(content: review.category), class:"text-dark" %></span>
+            </strong>
+
             <div class="form-group text-center">
               <strong>総合評価</strong>
                 <div id="all_rating_<%= review.id %>" class="centered-content"></div>
