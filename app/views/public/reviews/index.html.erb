@@ -1,4 +1,32 @@
 <div class="container mb-5">
+  <div class="row mt-3">
+    <%= form_with url: reviews_path, method: :get, class: "form-inline", local: true do |f| %>
+      <div class="form-group mr-2">
+        <%= f.label :min_price, "最低価格", class: "mr-1" %>
+        <%= f.number_field :min_price, class: "form-control" %>
+      </div>
+
+      <div class="form-group mr-2">
+        <%= f.label :max_price, "最高価格", class: "mr-1" %>
+        <%= f.number_field :max_price, class: "form-control" %>
+      </div>
+
+      <div class="form-group mr-2">
+        <%= f.label :min_rating, "最低評価", class: "mr-1" %>
+        <%= f.number_field :min_rating, class: "form-control", placeholder: "1~5" %>
+      </div>
+
+      <div class="form-group mr-2">
+        <%= f.label :max_rating, "最高評価", class: "mr-1" %>
+        <%= f.number_field :max_rating, class: "form-control", placeholder: "1~5" %>
+      </div>
+
+      <div class="col-12 form-group justify-content-center mt-2" %>
+        <%= f.submit "検索", class: "btn btn-success" %>
+      </div>
+    <% end %>
+  </div>
+
   <div class="row">
     <% @reviews.each do |review| %>
       <div class="col-md-3 col-sm-6 mb-4 mt-2">

@@ -1,6 +1,22 @@
 class Public::ReviewsController < ApplicationController
   def index
     @reviews = Review.all
+
+    if params[:min_price].present?
+      @reviews = @reviews.where('price >= ?', params[:min_price])
+    end
+
+    if params[:max_price].present?
+      @reviews = @reviews.where('price <= ?', params[:max_price])
+    end
+
+    if params[:min_rating].present?
+      @reviews = @reviews.where('all_rating >= ?', params[:min_rating])
+    end
+
+    if params[:max_rating].present?
+      @reviews = @reviews.where('all_rating <= ?', params[:max_rating])
+    end
   end
 
   def show
