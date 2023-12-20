@@ -1,6 +1,7 @@
 class Public::UsersController < ApplicationController
 before_action :authenticate_user!
 before_action :set_current_user
+before_action :ensure_guest_user, only: [:edit]
 
   def show
   end
@@ -33,6 +34,13 @@ before_action :set_current_user
 
   def set_current_user
     @user = current_user
+  end
+
+  def ensure_guest_user
+    @user = User.find(params[:id])
+    if @user.email == "guest@example.com"
+      redirect_to user_path(current_user) , notice: "ゲストユーザーはプロフィール編集画面へ遷移できません。"
+    end
   end
 
   def user_params
