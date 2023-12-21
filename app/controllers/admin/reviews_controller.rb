@@ -1,11 +1,12 @@
 class Admin::ReviewsController < ApplicationController
   before_action :authenticate_admin!
   def index
-    @reviews = Review.all
+    @reviews = Review.page(params[:page])
   end
 
   def show
     @review = Review.find(params[:id])
+    @review_comment =ReviewComment.new
   end
 
   def destroy

@@ -11,7 +11,9 @@ Rails.application.routes.draw do
     get 'search' => 'homes#search', as: 'search'
     get 'users/:user_id/reviews' => 'reviews#index', as: 'user_reviews'
     resources :users, only: [:index, :show, :edit, :update]
-    resources :reviews, only: [:index, :show, :update, :destroy]
+    resources :reviews, only: [:index, :show, :update, :destroy] do
+      resources :review_comments, only: [:destroy]
+    end
     resources :genres, only: [:index, :create, :edit, :update]
   end
 

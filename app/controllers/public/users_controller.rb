@@ -4,6 +4,7 @@ before_action :set_current_user
 before_action :ensure_guest_user, only: [:edit]
 
   def show
+    @reviews = @user.reviews.page(params[:page]).per(8)
   end
 
   def index

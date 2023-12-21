@@ -1,6 +1,6 @@
 class Public::ReviewsController < ApplicationController
   def index
-    @reviews = Review.all
+    @reviews = Review.page(params[:page])
 
     if params[:min_price].present?
       @reviews = @reviews.where('price >= ?', params[:min_price])
