@@ -7,7 +7,7 @@ class Review < ApplicationRecord
   validates :ramen_name, presence: true
   validates :review_comment, presence: true, length: { maximum: 500 }
   validates :category, presence: true
-  validates :all_rating, numericality: {
+  validates :all_rating, :noodle_rating, :soup_rating, :topping_rating, numericality: {
     less_than_or_equal_to: 5,
     greater_than_or_equal_to: 1}, presence: true
 
