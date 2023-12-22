@@ -22,8 +22,8 @@
         <a class="navbar-brand ml-auto" href="/">
           <%= image_tag "Logo.jpg", width: '100px', class: "img-fluid" %>
         </a>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav ml-auto">
+        <div class="collapse navbar-collapse justify-content-center" id="navbarSupportedContent">
+          <ul class="navbar-nav">
             <% if admin_signed_in? %>
               <li class='nav-item'>
                 <%= link_to 'ラーメン一覧', admin_reviews_path, class: 'btn btn-outline-dark mr-1' %>
