@@ -11,17 +11,19 @@ class Public::ReviewsController < ApplicationController
     end
 
     if params[:min_rating].present?
-      @reviews = @reviews.where('all_rating >= ?', params[:min_rating])
+      min_rating = params[:min_rating].to_f
+      @reviews = @reviews.where('all_rating >= ?', min_rating)
     end
 
     if params[:max_rating].present?
-      @reviews = @reviews.where('all_rating <= ?', params[:max_rating])
+       max_rating = params[:max_rating].to_f
+      @reviews = @reviews.where('all_rating <= ?', max_rating)
     end
   end
 
   def show
     @review = Review.find(params[:id])
-    @review_comment =ReviewComment.new
+    @review_comment = ReviewComment.new
   end
 
   def new

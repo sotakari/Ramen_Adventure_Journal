@@ -13,12 +13,12 @@
 
       <div class="form-group mr-2">
         <%= f.label :min_rating, "最低評価", class: "mr-1" %>
-        <%= f.number_field :min_rating, class: "form-control", placeholder: "1~5" %>
+        <%= f.number_field :min_rating, class: "form-control", placeholder: "0.5~5", step: "0.5" %>
       </div>
 
       <div class="form-group mr-2">
         <%= f.label :max_rating, "最高評価", class: "mr-1" %>
-        <%= f.number_field :max_rating, class: "form-control", placeholder: "1~5" %>
+        <%= f.number_field :max_rating, class: "form-control", placeholder: "0.5~5", step: "0.5" %>
       </div>
 
       <div class="col-12 form-group justify-content-center mt-2" %>

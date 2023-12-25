@@ -14,7 +14,7 @@
 
 <div class="container new-review mt-5 pb-5">
   <div class="row">
-    <% @user.reviews.each do |review| %>
+    <% @reviews.each do |review| %>
       <div class="col-md-3 col-sm-6 mb-4 mt-2">
         <div class="card h-100 shadow-lg">
           <%= link_to review_path(review.id) do %>

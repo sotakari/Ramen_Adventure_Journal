@@ -7,9 +7,6 @@ before_action :ensure_guest_user, only: [:edit]
     @reviews = @user.reviews.page(params[:page]).per(8)
   end
 
-  def index
-  end
-
   def edit
   end
 

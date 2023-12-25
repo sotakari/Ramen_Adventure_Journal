@@ -8,8 +8,8 @@ class Review < ApplicationRecord
   validates :review_comment, presence: true, length: { maximum: 500 }
   validates :category, presence: true
   validates :all_rating, :noodle_rating, :soup_rating, :topping_rating, numericality: {
-    less_than_or_equal_to: 5,
-    greater_than_or_equal_to: 1}, presence: true
+    less_than_or_equal_to: 5.0,
+    greater_than_or_equal_to: 0.5}, presence: true
 
   def get_image
     unless ramen_image.attached?
