@@ -1,6 +1,6 @@
 <% review.review_comments.each do |review_comment| %>
 <div class="review-comment">
-  <p><%= image_tag review_comment.user.get_profile_image, class:"mt-3 rounded-circle" %></p>
+  <p><%= image_tag review_comment.user.get_profile_image, class:"mt-3 rounded-circle img-fluid" %></p>
   <p><strong><%= review_comment.user.name %></strong></p>
   <p><%= review_comment.created_at.strftime('%Y/%m/%d') %></p>
   <p><%= review_comment.comment %></p>

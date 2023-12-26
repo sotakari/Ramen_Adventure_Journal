@@ -1,0 +1,67 @@
+ja:
+  activerecord:
+    models:
+      user: ユーザー
+      review: レビュー
+    attributes:
+      user:
+        name: 名前
+        email: メールアドレス
+      review:
+        shop_name: 店舗名
+        ramen_name: ラーメン名
+        review_comment: レビューコメント
+        price: 価格
+        category: カテゴリー
+        all_rating: 総合評価
+        noodle_rating: 麺評価
+        soup_rating: スープ評価
+        topping_rating: 具評価
+    errors:
+      models:
+        user:
+          attributes:
+            email:
+              blank: メールアドレスを入力してください
+            name:
+              blank: 名前を入力してください
+        review:
+          attributes:
+            shop_name:
+              blank: を入力してください
+            ramen_name:
+              blank: を入力してください
+            review_comment:
+              blank: を入力してください
+              too_long: は最大%{count}文字で入力してください
+            price:
+              blank: を入力してください
+            category:
+              blank: を入力してください
+            all_rating:
+              blank: を入力してください
+              not_a_number: は星で入力してください
+            noodle_rating:
+              blank: を入力してください
+              not_a_number: は星で入力してください
+            soup_rating:
+              blank: を入力してください
+              not_a_number: は星で入力してください
+            topping_rating:
+              blank: を入力してください
+              not_a_number: は星で入力してください
+
+  devise:
+    registrations:
+      user:
+        signed_up: 登録が完了しました。
+      signed_up: 登録が完了しました。
+    sessions:
+      user:
+        signed_in: ログインしました。
+        signed_out: ログアウトしました。
+      signed_in: ログインしました。
+      signed_out: ログアウトしました。
+      admin:
+        signed_in: 管理者としてログインしました。
+        signed_out: ログアウトしました。

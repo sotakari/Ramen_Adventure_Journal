@@ -3,8 +3,19 @@
     <div class="col-md-5 col-sm-10 mx-2 mx-sm-auto shadow-lg rounded px-0 my-5">
       <h5 class="text-dark bg-light p-4 mb-0"></h5>
       <div class="form-body p-4 mb-3">
-        <%= form_with model: @review, local:true do |f| %>
 
+        <%= form_with model: @review, local:true do |f| %>
+          <% if @review.errors.any? %>
+            <div id="error_explanation">
+              <h2><%= pluralize(@review.errors.count, "件") %> エラーが発生しました。:</h2>
+
+              <ul>
+                <% @review.errors.full_messages.each do |message| %>
+                  <li><%= message %></li>
+                <% end %>
+              </ul>
+            </div>
+          <% end %>
 
           <div class="form-group mb-3 mt-4">
             <%= f.label :ramen_image, "ラーメン画像", class: "form-label" %>
