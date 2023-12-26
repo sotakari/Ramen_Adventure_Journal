@@ -5,14 +5,10 @@
       <div class="form-body p-4 mb-3">
         <%= form_with model: @review, local:true do |f| %>
 
-          <div class="input-group mb-3 mt-4">
-            <div class="input-group-prepend">
-              <span class="input-group-text" aria-hidden="true"><i class="fas fa-image"></i></span>
-            </div>
-            <div class="custom-file">
-              <%= f.file_field :ramen_image, class: 'custom-file-input', accept: "image/*" %>
-              <label class="custom-file-label" for="post_image_image" style="text-align: left;"></label>
-            </div>
+
+          <div class="form-group mb-3 mt-4">
+            <%= f.label :ramen_image, "ラーメン画像", class: "form-label" %>
+            <%= f.file_field :ramen_image, class: "form-control-file" %>
           </div>
 
           <div class="input-group mb-3 mt-4">
