@@ -36,7 +36,7 @@ before_action :ensure_guest_user, only: [:edit]
 
   def ensure_guest_user
     if @user.email == "guest@example.com"
-      redirect_to user_path(current_user) , notice: "ゲストユーザーはプロフィール編集画面へ遷移できません。"
+      redirect_to mypage_path, notice: "ゲストユーザーはプロフィール編集画面へ遷移できません。"
     end
   end
 
