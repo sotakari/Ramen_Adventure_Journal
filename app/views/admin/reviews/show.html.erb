@@ -36,7 +36,7 @@
           <div class="card-title"><i class="fa fa-calendar"></i> <%= @review.created_at.strftime('%Y/%m/%d') %></div>
 
           <div>
-            <%= link_to "削除", review_path(@review), class: "btn btn-danger mr-1", method: :delete, data: { confirm: "本当に削除しますか？" } %>
+            <%= link_to "削除", admin_review_path(@review), class: "btn btn-danger mr-1", method: :delete, data: { confirm: "本当に削除しますか？" } %>
           </div>
 
           <div class="review-comments mt-4">
